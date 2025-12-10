@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Online Application / Registration Form</title>
+<style>
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: Arial, sans-serif;
+}
+body {
+background: linear-gradient(135deg, #4b79a1, #283e51);
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: flex-start;
+padding: 40px 10px;
+}
+.container {
+background: #ffffff;
+max-width: 700px;
+width: 100%;
+border-radius: 8px;
+padding: 25px 30px 30px;
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+h1 {
+text-align: center;
+margin-bottom: 20px;
+color: #283e51;
+}
+.form-row {
+margin-bottom: 15px;
+}
+.form-row label {
+display: block;
+margin-bottom: 6px;
+font-weight: bold;
+color: #333; }
+.form-row input,
+.form-row select,
+.form-row textarea
+{
+width: 100%;
+padding: 8px 10px;
+border-radius: 4px;
+border: 1px solid #ccc;
+font-size: 14px;
+}
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus
+{
+outline: none;
+border-color: #4b79a1;
+box-shadow:0 0 4px rgba(75, 121, 161, 0.6);
+}
+.inline
+{
+display: flex;
+gap: 15px;
+align-items: center;
+}
+button#submitBtn
+{
+width: 100%;
+padding: 10px;
+background: #4b79a1;
+border: none;
+color: #fff;
+font-size: 16px;
+border-radius: 4px;
+cursor: pointer;
+transition: background 0.2s ease; }
+button#submitBtn:hover
+{
+background: #35506b; }
+#resultCard
+{
+margin
+-top: 25px;
+padding: 20px;
+border-radius: 6px;
+background: #f4f9ff;
+border: 1px solid #c4d9ff;
+}
+#resultCard h2 {
+margin-bottom: 15px;
+color: #1f4e79;
+}
+.info-line {
+margin-bottom: 6px;
+font-size: 14px;
+}
+.hidden {
+display: none;
+}
+@media (max-width: 600px) {
+.container {
+padding: 20px;
+}
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$(document).ready(function () {
+$("#appForm").on("submit", function (e) {
+e.preventDefault();
+const name = $("#fullName").val().trim();
+const email = $("#email").val().trim();
+const phone = $("#phone").val().trim();
+const course = $("#course").val();
+const gender = $('input[name="gender"]:checked').val() || "";
+const address = $("#address").val().trim();
+if (!name || !email || !course || !gender) {
+alert("Please fill all required fields (Name, Email, Course, Gender).");
+return;
+}
+$("#rName").text(name);
+$("#rEmail").text(email);
+$("#rPhone").text(phone || "N/A");
+$("#rCourse").text(course);
+$("#rGender").text(gender);
+$("#rAddress").text(address || "N/A");
+$("#resultCard").hide().removeClass("hidden").fadeIn(300);
+});
+});
+</script>
+</head>
+<body>
+<div class="container">
+<h1>Online Application / Registration</h1>
+<form id="appForm">
+<div class="form-row">
+<label for="fullName">Full Name</label>
+<input type="text" id="fullName" required />
+</div>
+<div class="form-row">
+<label for="email">Email</label>
+<input type="email" id="email" required />
+</div>
+<div class="form-row">
+<label for="phone">Phone</label>
+<input type="tel" id="phone" />
+</div>
+<div class="form-row">
+<label for="course">Course Applied For</label>
+<select id="course" required>
+<option value="">-- Select --</option>
+<option value="B.Tech">B.Tech</option>
+<option value="M.Tech">M.Tech</option>
+<option value="MCA">MCA</option>
+<option value="MBA">MBA</option>
+</select>
+</div>
+<div class="form-row">
+<label>Gender</label>
+<div class="inline">
+<label><input type="radio" name="gender" value="Male" required /> Male</label>
+<label><input type="radio" name="gender" value="Female" /> Female</label>
+<label><input type="radio" name="gender" value="Other" /> Other</label>
+</div>
+</div>
+<div class="form-row">
+<label for="address">Address</label>
+<textarea id="address" rows="3"></textarea>
+</div>
+<div class="form-row">
+<button type="submit" id="submitBtn">Submit Application</button>
+</div>
+</form>
+<div id="resultCard" class="hidden">
+<h2>Application Submitted Successfully</h2>
+<p class="info-line"><strong>Name:</strong> <span id="rName"></span></p>
+<p class="info-line"><strong>Email:</strong> <span id="rEmail"></span></p>
+<p class="info-line"><strong>Phone:</strong> <span id="rPhone"></span></p>
+<p class="info-line"><strong>Course:</strong> <span id="rCourse"></span></p>
+<p class="info-line"><strong>Gender:</strong> <span id="rGender"></span></p>
+<p class="info-line"><strong>Address:</strong> <span id="rAddress"></span></p>
+</div>
+</div>
+</body>
+</html>
