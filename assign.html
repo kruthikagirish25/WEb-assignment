@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Resume & Bio-Data Website</title>
+
+    <!-- CSS -->
+    <style>
+        body { font-family: Arial; background: #eef1f7; margin: 0; }
+        header { background: #0044cc; padding: 20px; text-align: center; color: white; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; font-size: 18px; }
+        nav a:hover { text-decoration: underline; }
+
+        .section-box { 
+            background: white; 
+            width: 80%; 
+            margin: 25px auto; 
+            padding: 20px; 
+            border-radius: 10px; 
+            display: none;
+        }
+
+        #home { display: block; }
+
+        input, textarea { 
+            width: 95%; 
+            padding: 8px; 
+            margin: 8px 0; 
+            border-radius: 6px; 
+            border: 1px solid #555; 
+        }
+        button { 
+            padding: 10px 20px; 
+            background: #0044cc; 
+            border: none; 
+            color: white; 
+            font-size: 16px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+        }
+        button:hover { background: #0033aa; }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px; 
+        }
+        td, th { 
+            border: 1px solid #444; 
+            padding: 10px; 
+        }
+        footer { 
+            background: #222; 
+            color: white; 
+            text-align: center; 
+            padding: 10px; 
+            margin-top: 20px; 
+        }
+    </style>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- JavaScript -->
+    <script>
+        $(document).ready(function() {
+
+            // Navigation Handling
+            $(".menu").click(function(e) {
+                e.preventDefault();
+                let page = $(this).attr("href");
+                $(".section-box").hide();
+                $(page).fadeIn();
+            });
+
+            // Resume Submit
+            $("#resumeSubmit").click(function() {
+                $("#rNameOut").text($("#rName").val());
+                $("#rEmailOut").text($("#rEmail").val());
+                $("#rPhoneOut").text($("#rPhone").val());
+                $("#rEduOut").text($("#rEdu").val());
+                $("#rSkillsOut").text($("#rSkills").val());
+                $("#rProjectsOut").text($("#rProjects").val());
+                $("#resumeOutput").fadeIn();
+            });
+
+            // Bio-data Submit
+            $("#bioSubmit").click(function() {
+                $("#bNameOut").text($("#bName").val());
+                $("#bDobOut").text($("#bDob").val());
+                $("#bGenderOut").text($("#bGender").val());
+                $("#bFatherOut").text($("#bFather").val());
+                $("#bMotherOut").text($("#bMother").val());
+                $("#bAddressOut").text($("#bAddress").val());
+                $("#bNationOut").text($("#bNation").val());
+                $("#bLangOut").text($("#bLang").val());
+                $("#bHobbyOut").text($("#bHobby").val());
+                $("#bioOutput").fadeIn();
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+
+<header>
+    <h1>My Interactive Resume Website</h1>
+    <nav>
+        <a href="#home" class="menu">Home</a>
+        <a href="#resume" class="menu">Resume</a>
+        <a href="#biodata" class="menu">Bio-Data</a>
+    </nav>
+</header>
+
+<!-- HOME -->
+<section id="home" class="section-box">
+    <h2>Welcome</h2>
+    <p>Fill your details in Resume & Bio-data sections, click Submit, and view the results instantly.</p>
+</section>
+
+<!-- RESUME SECTION -->
+<section id="resume" class="section-box">
+    <h2>Resume (Fill & Submit)</h2>
+
+    <h3>Enter Your Details</h3>
+
+    <label>Name:</label>
+    <input type="text" id="rName">
+
+    <label>Email:</label>
+    <input type="email" id="rEmail">
+
+    <label>Phone:</label>
+    <input type="text" id="rPhone">
+
+    <label>Education:</label>
+    <textarea id="rEdu"></textarea>
+
+    <label>Skills:</label>
+    <textarea id="rSkills"></textarea>
+
+    <label>Projects:</label>
+    <textarea id="rProjects"></textarea>
+
+    <button id="resumeSubmit">Submit Resume</button>
+
+    <hr>
+
+    <section id="resumeOutput" style="display:none;">
+        <h3>Your Resume Data</h3>
+        <p><b>Name:</b> <span id="rNameOut"></span></p>
+        <p><b>Email:</b> <span id="rEmailOut"></span></p>
+        <p><b>Phone:</b> <span id="rPhoneOut"></span></p>
+        <p><b>Education:</b> <span id="rEduOut"></span></p>
+        <p><b>Skills:</b> <span id="rSkillsOut"></span></p>
+        <p><b>Projects:</b> <span id="rProjectsOut"></span></p>
+    </section>
+</section>
+
+<!-- BIO-DATA SECTION -->
+<section id="biodata" class="section-box">
+    <h2>Bio-Data Form</h2>
+
+    <label>Name:</label>
+    <input type="text" id="bName">
+
+    <label>Date of Birth:</label>
+    <input type="date" id="bDob">
+
+    <label>Gender:</label>
+    <input type="text" id="bGender">
+
+    <label>Father's Name:</label>
+    <input type="text" id="bFather">
+
+    <label>Mother's Name:</label>
+    <input type="text" id="bMother">
+
+    <label>Address:</label>
+    <textarea id="bAddress"></textarea>
+
+    <label>Nationality:</label>
+    <input type="text" id="bNation">
+
+    <label>Languages Known:</label>
+    <textarea id="bLang"></textarea>
+
+    <label>Hobbies:</label>
+    <textarea id="bHobby"></textarea>
+
+    <button id="bioSubmit">Submit Bio-data</button>
+
+    <hr>
+
+    <section id="bioOutput" style="display:none;">
+        <h3>Your Bio-data</h3>
+
+        <table>
+            <tr><td>Name</td><td id="bNameOut"></td></tr>
+            <tr><td>Date of Birth</td><td id="bDobOut"></td></tr>
+            <tr><td>Gender</td><td id="bGenderOut"></td></tr>
+            <tr><td>Father's Name</td><td id="bFatherOut"></td></tr>
+            <tr><td>Mother's Name</td><td id="bMotherOut"></td></tr>
+            <tr><td>Address</td><td id="bAddressOut"></td></tr>
+            <tr><td>Nationality</td><td id="bNationOut"></td></tr>
+            <tr><td>Languages Known</td><td id="bLangOut"></td></tr>
+            <tr><td>Hobbies</td><td id="bHobbyOut"></td></tr>
+        </table>
+    </section>
+</section>
+
+<footer>
+    © 2025 My Website
+</footer>
+
+</body>
+</html>
